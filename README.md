@@ -35,6 +35,9 @@ A to move left
 
 D to move right
 
+![image](https://github.com/user-attachments/assets/23dd81ca-7c60-49a4-b67f-f04931603f11)
+
+
 Notes
 Score and lives are currently not counted
 
