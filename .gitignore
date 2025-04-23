@@ -1,0 +1,11 @@
+/.vs
+/Builds
+/Library
+/Temp
+/UserSettings
+/Logs
+.vsconfig
+#CS-467.sln
+UpgradeLog.htm
+*.csproj
+*.sln
