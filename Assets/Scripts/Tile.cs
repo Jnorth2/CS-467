@@ -14,9 +14,10 @@ public class Tile : MonoBehaviour
 
     }
 
-    void set_health(int health)
+    public void set_health(int health)
     {
         block_health = health;
+        update_color();
     }
 
     void collision_occured()
