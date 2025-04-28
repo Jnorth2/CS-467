@@ -1,9 +1,11 @@
 /.vs
+.vscode/
 /Builds
 /Library
 /Temp
 /UserSettings
 /Logs
+/obj
 .vsconfig
 #CS-467.sln
 UpgradeLog.htm
