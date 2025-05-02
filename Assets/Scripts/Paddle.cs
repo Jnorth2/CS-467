@@ -6,6 +6,7 @@ public class Paddle : MonoBehaviour
     public new Rigidbody2D rigidbody { get; private set;} // paddle item
     public Vector2 direction {get; private set;} // moving left and right
     public float speed = 30f; // speed of paddle movement, there are other setting in unity to edit how the movement feels in Rigidbody settings
+    public float maxAngle = 75f;
 
     private void Awake() // initalize paddle
     {

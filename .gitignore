@@ -11,3 +11,4 @@
 UpgradeLog.htm
 *.csproj
 *.sln
+/build
