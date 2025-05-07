@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public new Rigidbody2D rigidbody {get; private set;}
-    public float speed = 500f; // ball speed
-    private float minBounceAngle = 0.3f; // minimum angle the ball bounces
-    private bool waitToLaunch = true; // flag to check whether ball in start/reset position
+    public new Rigidbody2D rigidbody { get; private set; }
+    public float speed = 500f; // Ball launch force
+    public float minSpeed = 9.4f; // Minimum allowed speed during play
+
+    private float minBounceAngle = 0.3f; // Minimum bounce angle to avoid flat trajectories
+    private bool waitToLaunch = true; // Flag for launch state
 
     public AudioClip bounceSound;
     private AudioSource audioSource;
 
-    private void Awake()  // Get ball item
+    private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody2D>();
         this.audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start() // ball start with slight delayed start before moving
+    private void Start()
     {
-        
         ResetBall();
     }
 
@@ -31,29 +32,29 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && waitToLaunch) // press Spacebar to launch ball from starting/reset position
+        if (Input.GetKeyDown(KeyCode.Space) && waitToLaunch)
         {
-            CancelInvoke(); // stop any queued force applications
-            Invoke(nameof(RandomeTrajectory), 1.5f);
+            CancelInvoke();
+            Invoke(nameof(RandomTrajectory), 1.5f);
             waitToLaunch = false;
         }
     }
 
-    private void RandomeTrajectory() // ball movmeent and speed
+    private void RandomTrajectory()
     {
         Vector2 force = Vector2.zero;
         do
         {
             force.x = Random.Range(-1f, 1f);
             force.y = -1f;
-        } while (Mathf.Abs(force.x) < minBounceAngle);  // prevent too vertical
+        } while (Mathf.Abs(force.x) < minBounceAngle); // Prevent too vertical
 
         this.rigidbody.AddForce(force.normalized * this.speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // play bounce sound
+        // Play bounce sound if set
         if (bounceSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(bounceSound);
@@ -61,7 +62,7 @@ public class Ball : MonoBehaviour
 
         Vector2 v = this.rigidbody.velocity.normalized;
 
-        // enforce minimum bounce angle; prevents ball from being "stuck" bouncing horizontally or vertically
+        // Enforce minimum bounce angle
         if (Mathf.Abs(v.x) < minBounceAngle)
         {
             v.x = Mathf.Sign(v.x) * minBounceAngle;
@@ -71,7 +72,31 @@ public class Ball : MonoBehaviour
             v.y = Mathf.Sign(v.y) * minBounceAngle;
         }
 
-        // preserve speed
+        // Preserve speed after collision
         this.rigidbody.velocity = v.normalized * this.rigidbody.velocity.magnitude;
+
+        // Enforce minimum speed after collision
+        EnsureMinSpeed();
+
+        // Log speed to console
+        float currentSpeed = this.rigidbody.velocity.magnitude;
+        Debug.Log($"Ball hit {collision.gameObject.name} | Speed: {currentSpeed:F2}");
     }
-}   
+
+    private void FixedUpdate()
+    {
+        if (!waitToLaunch)
+        {
+            EnsureMinSpeed();
+        }
+    }
+
+    private void EnsureMinSpeed()
+    {
+        float currentSpeed = this.rigidbody.velocity.magnitude;
+        if (currentSpeed < minSpeed)
+        {
+            this.rigidbody.velocity = this.rigidbody.velocity.normalized * minSpeed;
+        }
+    }
+}
