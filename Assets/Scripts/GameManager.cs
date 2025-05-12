@@ -1,82 +1,97 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     public Ball ball { get; private set; }
-    public Paddle paddle {get; private set; }
-    public int score = 0;
-    public int lives = 3;
-    public int level = 1;
-    public Vector2Int num_tiles; //x, y number of tiles in a matrix
-    public Vector2 offset; //spacing between tiles (units are game units which are ?)
-    public GameObject Bricks; //tile object
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject); // will include struct for lives, points, levels
+    public Paddle paddle { get; private set; }
 
-        SceneManager.sceneLoaded += OnLevelLoaded;
-    }
+    public Vector2Int num_tiles; // x = columns, y = rows
+    public Vector2 offset;       // spacing between bricks
+    public GameObject Bricks;    // brick prefab
+
+    private int bricksRemaining = 0;
 
     private void Start()
     {
-        NewGame();
+        Debug.Log("GameManager → Initializing training environment.");
+        ball = FindAnyObjectByType<Ball>();
+        paddle = FindAnyObjectByType<Paddle>();
+        SpawnBricks();
+        ResetLevel();
     }
 
-    private void NewGame()
+    private void SpawnBricks()
     {
-        this.score = 0;
-        this.lives = 3;
+        bricksRemaining = 0;
 
-        LoadLevel(1);
-    }
-
-    private void LoadLevel( int level)
-    {
-        this.level = level;
-        SceneManager.LoadScene("Level" + level);
-    }
-
-    private void OnLevelLoaded(Scene Scene, LoadSceneMode mode)
-    {
-        this.ball = FindAnyObjectByType<Ball>();
-        this.paddle = FindAnyObjectByType<Paddle>();
-        //Create Tiles in a Grid 
         for (int i = 0; i < num_tiles.x; i++)
         {
             for (int j = 0; j < num_tiles.y; j++)
             {
                 GameObject new_tile = Instantiate(Bricks, transform);
-                new_tile.transform.position = transform.position + new Vector3((float)((num_tiles.x - 1) * 0.5f - i) * offset.x, j * offset.y, 0);
+                new_tile.transform.position = transform.position + new Vector3(
+                    ((num_tiles.x - 1) * 0.5f - i) * offset.x,
+                    j * offset.y,
+                    0
+                );
+
                 Tile tile_params = new_tile.GetComponent<Tile>();
                 if (tile_params != null)
                 {
-                    tile_params.set_health(j+1);
+                    tile_params.set_health(j + 1);
+                    tile_params.manager = this; // 🔗 Link back to GameManager
+                    bricksRemaining++;
                 }
                 else
                 {
-                    Debug.Log("No tile object found!");
+                    Debug.LogWarning("GameManager → Tile prefab is missing Tile.cs");
                 }
             }
         }
     }
 
-    private void ResetLevel()
+    public void BrickDestroyed()
     {
-        if (this.ball != null)
-        {
-            this.ball.ResetBall();
-        }
+        bricksRemaining--;
+        Debug.Log($"GameManager → Brick destroyed. Remaining: {bricksRemaining}");
 
-        if (this.paddle != null)
+        if (bricksRemaining <= 0)
         {
-            this.paddle.ResetPaddle();
+            Debug.Log("GameManager → All bricks cleared! Resetting.");
+            ResetBricks();
+
+            // Optional: End episode to teach full-clear as a win
+            BreakoutAgent agent = FindAnyObjectByType<BreakoutAgent>();
+            agent?.EndEpisode();
         }
     }
 
-    public void Miss(){
-       ResetLevel();
+    private void ResetBricks()
+    {
+        ClearBricks();
+        SpawnBricks();
     }
 
+    private void ClearBricks()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Tile"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    public void ResetLevel()
+    {
+        ball?.ResetBall();
+        paddle?.ResetPaddle();
+    }
+
+    public void Miss()
+    {
+        Debug.Log("GameManager → Miss() called.");
+        ResetLevel();
+    }
 }

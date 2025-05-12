@@ -8,8 +8,11 @@ public class Missed : MonoBehaviour
 
         if (collision.gameObject.name == "Ball")
         {
-            Debug.Log("Ball hit the bottom — calling Miss()");
-            FindObjectOfType<GameManager>().Miss();
+            BreakoutAgent agent = FindAnyObjectByType<BreakoutAgent>();
+            if (agent != null)
+            {
+                agent.PenalizeMiss();
+            }
         }
     }
 }

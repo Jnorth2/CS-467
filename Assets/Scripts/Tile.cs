@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Tile : MonoBehaviour
 {
+    public GameManager manager;
+
     private int block_health = 3;
+
     private SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,7 @@ public class Tile : MonoBehaviour
         block_health -= 1;
         if (block_health <= 0)
         {
+            manager?.BrickDestroyed(); // Notify GameManager
             Destroy(gameObject);
         }
         else
@@ -71,9 +76,15 @@ public class Tile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Ball")
+        if (collision.gameObject.name == "Ball")
         {
-            collision_occured();
+            collision_occured();  // <-- This was missing!
+
+            BreakoutAgent agent = FindAnyObjectByType<BreakoutAgent>();
+            if (agent != null)
+            {
+                agent.RewardBrickHit();
+            }
         }
     }
 }

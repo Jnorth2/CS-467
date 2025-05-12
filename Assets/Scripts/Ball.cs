@@ -40,6 +40,12 @@ public class Ball : MonoBehaviour
         }
     }
 
+    public void LaunchBallAfterDelay(float delay = 1.2f)
+    {
+        CancelInvoke();
+        Invoke(nameof(RandomTrajectory), delay);
+    }
+
     private void RandomTrajectory()
     {
         Vector2 force = Vector2.zero;

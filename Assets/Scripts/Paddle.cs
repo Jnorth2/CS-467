@@ -50,6 +50,12 @@ public class Paddle : MonoBehaviour
             Vector3 paddlePosition = this.transform.position;
             Vector2 contactPoint = collision.GetContact(0).point;
 
+            BreakoutAgent agent = FindAnyObjectByType<BreakoutAgent>();
+            if (agent != null)
+            {
+                agent.RewardBallHit();
+            }
+
             float paddleOffset = contactPoint.x - paddlePosition.x;
             float paddleWidth = collision.otherCollider.bounds.size.x / 2f;
             float normalizedOffset = Mathf.Clamp(paddleOffset / paddleWidth, -1f, 1f);
@@ -75,4 +81,5 @@ public class Paddle : MonoBehaviour
             ball.rigidbody.velocity = rotation * Vector2.up * ball.rigidbody.velocity.magnitude;
         }
     }
+    
 }
