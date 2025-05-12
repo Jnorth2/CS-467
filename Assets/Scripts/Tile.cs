@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public Level Level;
+    public GameManager GameManager;
     private int block_health = 3;
     private SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
+        this.GameManager = FindAnyObjectByType<GameManager>();
+        this.Level = FindAnyObjectByType<Level>();
         sr = GetComponent<SpriteRenderer>();
         update_color();
 
@@ -26,10 +30,13 @@ public class Tile : MonoBehaviour
         if (block_health <= 0)
         {
             Destroy(gameObject);
+            this.Level.update_brickcount();
+            this.GameManager.UpdateScore(5);
         }
         else
         {
             update_color();
+            this.GameManager.UpdateScore(1);
         }
     }
     
