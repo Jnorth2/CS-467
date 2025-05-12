@@ -151,12 +151,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec9d44c779c5364c8a271895ee309b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minBallVel: 9.4
+  padddleSacle: {x: 5.7, y: 0.5}
   score: 0
   lives: 3
   level: 1
   num_tiles: {x: 7, y: 5}
   offset: {x: 4, y: 2}
+  scale: {x: 3, y: 1}
   Bricks: {fileID: 8637118028753518299, guid: b2498e903151d3c459f2e3ddf0cb3efb, type: 3}
+  split: 0
+  ai: 0
 --- !u!4 &1537207397
 Transform:
   m_ObjectHideFlags: 0
