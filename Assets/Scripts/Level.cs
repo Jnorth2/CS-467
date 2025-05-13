@@ -15,6 +15,9 @@ public class Level : MonoBehaviour
     public bool split;
     public bool ai;
 
+    public AudioClip victorySound;
+    private AudioSource audioSourceVictory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class Level : MonoBehaviour
         //Generate the Scene
         SceneManager.sceneLoaded += OnLevelLoaded;
         this.GameManager.OnLevelLoaded();
+        this.audioSourceVictory = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -102,6 +106,10 @@ public class Level : MonoBehaviour
         brickCount--;
         if (brickCount == 0)
         {
+            if (victorySound != null && audioSourceVictory != null)
+            {
+                audioSourceVictory.PlayOneShot(victorySound);
+            }
             LevelComplete();
         }
     }

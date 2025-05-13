@@ -12,12 +12,12 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void Awake()
     {
-        this.GameManager = FindAnyObjectByType<GameManager>(); 
+        this.GameManager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
