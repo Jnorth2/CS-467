@@ -31,12 +31,18 @@ public class Tile : MonoBehaviour
         {
             Destroy(gameObject);
             this.Level.update_brickcount();
-            this.GameManager.UpdateScore(5);
+            // this.GameManager.UpdateScore(5);
+            // update UI
+            if (ScoreManager.instance != null)
+            {
+                ScoreManager.instance.UpdateScore(5);
+            }
         }
         else
         {
             update_color();
-            this.GameManager.UpdateScore(1);
+            // this.GameManager.UpdateScore(1);
+            ScoreManager.instance.UpdateScore(1);
         }
     }
     

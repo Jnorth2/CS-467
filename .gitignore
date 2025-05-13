@@ -12,3 +12,5 @@ UpgradeLog.htm
 *.csproj
 *.sln
 /build
+Assembly-CSharp.csproj
+Assembly-CSharp.csproj

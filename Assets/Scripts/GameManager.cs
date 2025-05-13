@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -110,6 +112,12 @@ public class GameManager : MonoBehaviour
 
     public void Miss(){
         this.lives -= 1;
+
+        if (LivesManager.instance != null)
+        {
+            LivesManager.instance.UpdateLives();
+        }
+
         if (this.lives <= 0)
         {
             SceneManager.sceneLoaded -= FindAnyObjectByType<Level>().OnLevelLoaded;
