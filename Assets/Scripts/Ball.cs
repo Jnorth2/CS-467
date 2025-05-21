@@ -56,13 +56,16 @@ public class Ball : MonoBehaviour
     {
         this.transform.position = Vector2.zero;
         this.rigidbody.velocity = Vector2.zero;
-        waitToLaunch = true;
+        if (gameManager == null)
+                    gameManager = FindAnyObjectByType<GameManager>();
+        if (!gameManager.ai)
+        {
+            waitToLaunch = true;
+        }
+        
         launchedByAI = false;
 
-        waitToLaunch = true;
-
-        if (gameManager == null)
-            gameManager = FindAnyObjectByType<GameManager>();
+        
 
         launchedByAI = (gameManager != null && gameManager.ai);
     }
