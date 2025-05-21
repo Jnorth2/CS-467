@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int new_score)
     {
         score += new_score;
+        Debug.Log(score);
     }
 
     private void ResetLevel()
