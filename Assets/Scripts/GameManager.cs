@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(score);
     }
 
-    private void ResetLevel()
+    public void ResetLevel()
     {
         if (this.ball != null)
         {
