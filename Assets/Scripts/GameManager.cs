@@ -47,6 +47,14 @@ public class GameManager : MonoBehaviour
         LoadLevel();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void ResetGame()
     {
         this.minBallVel = 9.4f;
