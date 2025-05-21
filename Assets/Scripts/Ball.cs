@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    private GameManager gameManager;
+    private bool launchedByAI = false;
+
     public new Rigidbody2D rigidbody { get; private set; }
     public float speed = 500f; // Ball launch force
     public float minSpeed = 9.4f; // Minimum allowed speed during play
@@ -20,7 +23,33 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
+
         ResetBall();
+
+        if (gameManager != null && gameManager.ai)
+        {
+            launchedByAI = true;
+            Invoke(nameof(Launch), 1.0f); // Launch with delay for AI mode
+        }
+    }
+
+    private void Update()
+    {
+        if (!launchedByAI && gameManager != null && !gameManager.ai && Input.GetKeyDown(KeyCode.Space) && waitToLaunch)
+        {
+            Launch(); // Manual launch by player
+        }
+    }
+
+    public void Launch()
+    {
+        if (waitToLaunch)
+        {
+            CancelInvoke();
+            Invoke(nameof(RandomTrajectory), 1.5f); // Actual force is applied after a short delay
+            waitToLaunch = false;
+        }
     }
 
     public void ResetBall()
@@ -28,16 +57,14 @@ public class Ball : MonoBehaviour
         this.transform.position = Vector2.zero;
         this.rigidbody.velocity = Vector2.zero;
         waitToLaunch = true;
-    }
+        launchedByAI = false;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && waitToLaunch)
-        {
-            CancelInvoke();
-            Invoke(nameof(RandomTrajectory), 1.5f);
-            waitToLaunch = false;
-        }
+        waitToLaunch = true;
+
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameManager>();
+
+        launchedByAI = (gameManager != null && gameManager.ai);
     }
 
     private void RandomTrajectory()
