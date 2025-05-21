@@ -40,6 +40,10 @@ public class Ball : MonoBehaviour
         {
             Launch(); // Manual launch by player
         }
+        if (launchedByAI && waitToLaunch)
+        {
+            Launch();
+        }
     }
 
     public void Launch()
@@ -56,18 +60,16 @@ public class Ball : MonoBehaviour
     {
         this.transform.position = Vector2.zero;
         this.rigidbody.velocity = Vector2.zero;
-        if (gameManager == null)
-                    gameManager = FindAnyObjectByType<GameManager>();
-        if (!gameManager.ai)
-        {
-            waitToLaunch = true;
-        }
+
+        waitToLaunch = true;
         
         launchedByAI = false;
 
         
 
         launchedByAI = (gameManager != null && gameManager.ai);
+        Debug.Log(launchedByAI);
+        Debug.Log(waitToLaunch);
     }
 
     private void RandomTrajectory()

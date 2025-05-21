@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        this.minBallVel = 9.4f;
+        this.minBallVel = 10f;
         this.padddleSacle = new Vector3(5.7f, 0.5f, 1.0f);
         this.split = false;
         this.ai = false;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        this.minBallVel = 9.4f;
+        this.minBallVel = 10f;
         this.padddleSacle = new Vector3(5.7f, 0.5f, 1.0f);
         this.split = false;
         this.ai = false;

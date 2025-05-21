@@ -29,7 +29,7 @@ public class BreakoutAgent : Agent
         paddleRb = gameManager.paddle.GetComponent<Rigidbody2D>();
         ballRb = gameManager.ball.GetComponent<Rigidbody2D>();
 
-        gameManager.Miss();
+        //gameManager.Miss();
         gameManager.ball.Launch();
         
     }
