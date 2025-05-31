@@ -78,6 +78,8 @@ public class BreakoutAgent : Agent
 
         if (move == 1) direction = Vector2.left;
         else if (move == 2) direction = Vector2.right;
+        // Debug.Log($"[BreakoutAgent] Received move: {move}, direction: {direction}");
+
 
         paddleRb.velocity = direction * moveSpeed;
 
@@ -98,19 +100,19 @@ public class BreakoutAgent : Agent
     public void RewardBallHit()
     {
         AddReward(0.2f);
-        Debug.Log("BreakoutAgent Reward: Paddle hit (+0.2)");
+        // Debug.Log("BreakoutAgent Reward: Paddle hit (+0.2)");
     }
 
     public void RewardBrickHit()
     {
         AddReward(1.0f);
-        Debug.Log("BreakoutAgent Reward: Brick hit (+1.0)");
+        // Debug.Log("BreakoutAgent Reward: Brick hit (+1.0)");
     }
 
     public void PenalizeMiss()
     {
         AddReward(-1.0f);
-        Debug.Log("BreakoutAgent Penalty: Missed ball (-1.0)");
+        // Debug.Log("BreakoutAgent Penalty: Missed ball (-1.0)");
         EndEpisode();
     }
 }

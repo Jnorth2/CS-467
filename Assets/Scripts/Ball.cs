@@ -112,7 +112,7 @@ public class Ball : MonoBehaviour
 
         // Log speed to console
         float currentSpeed = this.rigidbody.velocity.magnitude;
-        Debug.Log($"Ball hit {collision.gameObject.name} | Speed: {currentSpeed:F2}");
+        // Debug.Log($"Ball hit {collision.gameObject.name} | Speed: {currentSpeed:F2}");
     }
 
     private void FixedUpdate()

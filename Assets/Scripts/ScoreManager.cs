@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScore(int point)
     {
         score += point;
-        Debug.Log(GameManager.score);
+        // Debug.Log(GameManager.score);
         if (scoreText != null)
         {
             scoreText.text = $"SCORE: {GameManager.score}";

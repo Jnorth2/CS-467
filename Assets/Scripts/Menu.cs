@@ -38,10 +38,12 @@ public class Menu : MonoBehaviour
         //Set game parameters
         if (type == 0)
         {
+            Debug.Log("[Menu] ML Play selected");
             this.GameManager.ai = true;
         }
         else if (type == 1)
         {
+            Debug.Log("[Menu] Single Player selected");
             this.GameManager.split = true;
         }
         this.GameManager.num_tiles.x = 2;

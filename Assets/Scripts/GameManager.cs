@@ -95,15 +95,41 @@ public class GameManager : MonoBehaviour
         this.ball = FindAnyObjectByType<Ball>();
         this.paddle = FindAnyObjectByType<Paddle>();
 
+        // Dynamically assign breakoutAgentObject if not already assigned
+        if (breakoutAgentObject == null)
+        {
+            breakoutAgentObject = GameObject.FindWithTag("BreakoutAgent");
+
+            if (breakoutAgentObject == null)
+            {
+                Debug.LogWarning("[GameManager] Could not find GameObject with tag 'BreakoutAgent'");
+            }
+            else
+            {
+                Debug.Log("[GameManager] breakoutAgentObject successfully assigned via tag");
+            }
+        }
+
+        Debug.Log($"[GameManager] ai = {ai}");
+
         if (paddle != null)
         {
             var paddleScript = paddle.GetComponent<Paddle>();
-            if (paddleScript != null) paddleScript.enabled = !ai;
+            if (paddleScript != null)
+            {
+                paddleScript.enabled = !ai;
+                Debug.Log($"[GameManager] Paddle script enabled? {!ai}");
+            }
         }
 
         if (breakoutAgentObject != null)
+        {
             breakoutAgentObject.SetActive(ai);
+            Debug.Log($"[GameManager] ML Agent Active? {ai}");
+            Debug.Log($"[GameManager] breakoutAgentObject.activeSelf: {breakoutAgentObject.activeSelf}");
+        }
     }
+
 
     public void UpdateScore(int new_score)
     {

@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesText: {fileID: 561965410}
+  GameManager: {fileID: 0}
 --- !u!1 &740387076
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +715,7 @@ GameObject:
   - component: {fileID: 882459517}
   m_Layer: 0
   m_Name: BreakoutAgent
-  m_TagString: Untagged
+  m_TagString: BreakoutAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -943,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1018258170}
+  GameManager: {fileID: 0}
 --- !u!1 &1236802010
 GameObject:
   m_ObjectHideFlags: 0
