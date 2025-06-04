@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
         this.level = 1;
         this.score = 0;
         this.lives = 3;
+        //Debug.Log($"[ResetGame] GameManager.lives reset to: {lives}");
     }
 
     private void GameOver()
@@ -102,11 +103,12 @@ public class GameManager : MonoBehaviour
 
             if (breakoutAgentObject == null)
             {
-                Debug.LogWarning("[GameManager] Could not find GameObject with tag 'BreakoutAgent'");
+                Debug.Log($"[GameManager] breakoutAgentObject.SetActive({ai})");
+                Debug.Log($"[GameManager] breakoutAgentObject.activeSelf: {breakoutAgentObject.activeSelf}");
             }
             else
             {
-                Debug.Log("[GameManager] breakoutAgentObject successfully assigned via tag");
+                Debug.LogWarning("[GameManager] breakoutAgentObject is null!");
             }
         }
 
@@ -118,15 +120,15 @@ public class GameManager : MonoBehaviour
             if (paddleScript != null)
             {
                 paddleScript.enabled = !ai;
-                Debug.Log($"[GameManager] Paddle script enabled? {!ai}");
+                // Debug.Log($"[GameManager] Paddle script enabled? {!ai}");
             }
         }
 
         if (breakoutAgentObject != null)
         {
             breakoutAgentObject.SetActive(ai);
-            Debug.Log($"[GameManager] ML Agent Active? {ai}");
-            Debug.Log($"[GameManager] breakoutAgentObject.activeSelf: {breakoutAgentObject.activeSelf}");
+            // Debug.Log($"[GameManager] ML Agent Active? {ai}");
+            // Debug.Log($"[GameManager] breakoutAgentObject.activeSelf: {breakoutAgentObject.activeSelf}");
         }
     }
 
@@ -134,7 +136,7 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int new_score)
     {
         score += new_score;
-        Debug.Log(score);
+        //Debug.Log(score);
     }
 
     public void ResetLevel()
@@ -153,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void Miss()
     {
         this.lives -= 1;
+        //Debug.Log($"[Miss] GameManager.lives decremented to: {lives}");
 
         if (LivesManager.instance != null)
         {
