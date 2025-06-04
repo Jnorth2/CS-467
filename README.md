@@ -1,5 +1,11 @@
 # CS-467
-ML Breakout Online Capstone
+## ML Breakout Online Capstone
+
+## Installation:
+
+### Release Instructions:
+
+### Developer Instructions:
 
 After downloading or cloning this repository, follow these steps to open and play the game in Unity.
 
