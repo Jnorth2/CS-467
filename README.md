@@ -61,6 +61,20 @@ Important Requirements/Features:
 - ML-Agent overrides single player option after playing ML-agent once. 
 - Split Screen currently is unavailable. 
 
+## Code Location
+### Github
+1. Open [scripts](https://github.com/Jnorth2/CS-467/tree/main/Assets/Scripts)
+#### Alternatively
+1. Go to [Github Repo](https://github.com/Jnorth2/CS-467)
+2. Open Assets Directory
+3. Open Scripts Directory
+
+### Unity
+1. Launch the project
+2. Locate the project tab
+3. Open the Assets directory
+4. Open the scripts directory
+5. double-click any script to view in Microsoft Visual Studio
 
 
 ## Installation:
@@ -78,35 +92,39 @@ Important Requirements/Features:
 
 2. Clone the repository or download the source code as a zip from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.0.0).
 
-3. After downloading or cloning this repository, follow these steps to open and play the game in Unity.
+3. Install [Unity Hub](https://unity.com/download)
 
-    a. Opening the Project in Unity
-    b. Open Unity Hub
+4. Open Unity Hub
 
-    c. Click Open
+5. Go to installs and install Unity (2022.3.61f1) LTS. Unity may prompt you to install Microsoft Visual Studios. Do so to be able to view code scripts.
 
-    d. Navigate to the folder where you saved the project
+6. After downloading or cloning this repository, follow these steps to open and play the game in Unity.  
+    a.  Open Unity Hub
 
-    e. Select the root project folder and click Open
-    f. Open Unity Hub and select "Open". Navigate to the folder where you saved the project, then select and open it.
+    b. Click Open
+
+    c. Navigate to the folder where you saved the project
+
+    d. Select the root project folder and click Open
+    e. Open Unity Hub and select "Open". Navigate to the folder where you saved the project, then select and open it.
 ![image](https://github.com/user-attachments/assets/16309893-b2f2-4265-b215-2b4e55b2d70c)
-    g. Add Scenes to Build Settings
-    h. In Unity, go to File > Build Settings
+    f. Add Scenes to Build Settings
+    g. In Unity, go to File > Build Settings
 
-    i. In the Project pane, navigate to:
-    j. Assets > Scenes > Global, Level1, Level2, Menu, GameOver
+    h. In the Project pane, navigate to:
+    i. Assets > Scenes > Global, Level1, Level2, Menu, GameOver
 
-    k. Drag all scenes into the Scenes In Build window
+    j. Drag all scenes into the Scenes In Build window
 ![image](https://github.com/user-attachments/assets/6e7dfc36-a04b-404b-a851-1980d2860c1b)
 ![image](https://github.com/user-attachments/assets/918cc83f-7f9e-4bf4-b0bb-8a187c69dfa9)
-4. Running the Game
+7. Running the Game
     a. In the Hierarchy panel, click on the Global object
 
     b. Press the Play button (top center in Unity)
 
     c. The game should compile and start!
 
-5. Controls  
+8. Controls  
 Move the paddle using:
 
     A to move left
