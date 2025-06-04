@@ -75,6 +75,10 @@ Important Requirements/Features:
 4. Open the scripts directory
 5. double-click any script to view in Microsoft Visual Studio
 
+### ML Agent Training Code
+1. Training code is located in the [ml-agent-training](https://github.com/Jnorth2/CS-467/tree/ml-agent-training) branch  
+2. Follow Unity or Github Alternatively to find the scripts  
+
 
 ## Installation:
 
