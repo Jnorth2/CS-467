@@ -58,7 +58,6 @@ Important Requirements/Features:
 
 
 ## Known Bugs:
-- ML-Agent overrides single player option after playing ML-agent once. 
 - Split Screen currently is unavailable. 
 
 ## Code Location
@@ -81,8 +80,8 @@ Important Requirements/Features:
 
 ### Release Instructions:
 1. Dowload Zip file (ML-Breakout.zip) from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.0.0).
-2. Navigate to the zip file (Downloads as MonoBleedingEdge.zip).
-3. Extract the zip file (MonoBleedingEdge.zip).
+2. Navigate to the zip file (Downloads as ML_Breakout.zip).
+3. Extract the zip file (ML_Breakout.zip).
 4. Open the extracted directory.
 5. Locate the .exe file (CS-467.exe).
 6. Double-click to open the game.
