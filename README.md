@@ -83,7 +83,7 @@ Important Requirements/Features:
 ## Installation:
 
 ### Release Instructions:
-1. Dowload Zip file (ML-Breakout.zip) from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.0.0).
+1. Dowload Zip file (ML-Breakout.zip) from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.1.0).
 2. Navigate to the zip file (Downloads as ML_Breakout.zip).
 3. Extract the zip file (ML_Breakout.zip).
 4. Open the extracted directory.
@@ -91,9 +91,9 @@ Important Requirements/Features:
 6. Double-click to open the game.
 
 ### Developer Instructions:
-1. Navigate to the [Github Repository](https://github.com/Jnorth2/CS-467/tree/v1.0.0).
+1. Navigate to the [Github Repository](https://github.com/Jnorth2/CS-467).
 
-2. Clone the repository or download the source code as a zip from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.0.0).
+2. Clone the repository or download the source code as a zip from [GitHub Releases](https://github.com/Jnorth2/CS-467/releases/tag/v1.1.0).
 
 3. Install [Unity Hub](https://unity.com/download)
 
