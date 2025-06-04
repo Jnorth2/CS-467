@@ -68,8 +68,8 @@ public class Ball : MonoBehaviour
         
 
         launchedByAI = (gameManager != null && gameManager.ai);
-        Debug.Log(launchedByAI);
-        Debug.Log(waitToLaunch);
+        // Debug.Log(launchedByAI);
+        // Debug.Log(waitToLaunch);
     }
 
     private void RandomTrajectory()

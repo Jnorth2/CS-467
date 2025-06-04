@@ -35,16 +35,21 @@ public class Menu : MonoBehaviour
     //Load the first Level
     public void LoadLevel(int type)
     {
+        Debug.Log($"[Menu] LoadLevel type: {type}, GameManager.lives = {GameManager.lives}");
         //Set game parameters
         if (type == 0)
         {
             Debug.Log("[Menu] ML Play selected");
+            Debug.Log($"[DEBUG - ML Play] GameManager.lives = {GameManager.lives}");
             this.GameManager.ai = true;
+            this.GameManager.lives = 3;
         }
         else if (type == 1)
         {
             Debug.Log("[Menu] Single Player selected");
-            this.GameManager.split = true;
+            this.GameManager.ai = false;
+            // this.GameManager.split = true;
+            Debug.Log($"[Menu] LoadLevel Summary — ai: {GameManager.ai}, split: {GameManager.split}");
         }
         this.GameManager.num_tiles.x = 2;
         this.GameManager.num_tiles.y = 1;

@@ -37,11 +37,12 @@ public class Level : MonoBehaviour
 
         // Manually invoke if already loaded
         GameManager.OnLevelLoaded();
+        
     }
 
     private void Start()
     {
-        Debug.Log($"[Level] Brick count at start: {brickCount}");
+        // Debug.Log($"[Level] Brick count at start: {brickCount}");
     }
 
     private void Update() { }
